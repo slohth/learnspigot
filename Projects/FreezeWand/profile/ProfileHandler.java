@@ -18,11 +18,8 @@ public final class ProfileHandler {
     }
 
     // Register a new profile into the handler
-    @NotNull
-    public Profile register(@NotNull final UUID uniqueId, @NotNull final String name) {
-        final Profile profile = new Profile(uniqueId, name);
-        profileMap.put(uniqueId, profile);
-        return profile;
+    public void register(@NotNull final UUID uniqueId, @NotNull final String name) {
+        profileMap.put(uniqueId, new Profile(uniqueId, name));
     }
 
     // Find a potential profile based off of player unique id
