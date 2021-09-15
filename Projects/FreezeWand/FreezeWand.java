@@ -57,15 +57,9 @@ public final class FreezeWand extends JavaPlugin implements Listener {
         // Set the target's frozen state to the opposite
         target.setFrozen(!target.isFrozen());
 
-        // Send the target a message to update them on their frozen status
+        // Send the target and profile a message to update them on the target's frozen status
         target.sendMessage("&eYou have been " + (target.isFrozen() ? "" : "un") + "frozen!");
-
-        // Condition to add/remove the target to/from the profile's list
-        if (target.isFrozen()) {
-            profile.addFrozen(target);
-        } else {
-            profile.removeFrozen(target);
-        }
+        profile.sendMessage("&eYou have " + (target.isFrozen() ? "" : "un") + "frozen " + target.getName() + "!");
     }
 
     @EventHandler
