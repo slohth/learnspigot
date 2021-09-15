@@ -15,8 +15,7 @@ public final class Profile {
     private final UUID uniqueId;
     private String name;
 
-    // A list of profiles the player currently has frozen, and if they themselves are frozen
-    private final List<Profile> frozenList = new ArrayList<>();
+    // If they themselves are frozen
     private boolean frozen = false;
 
     // Constructor takes the player's unique id & username
@@ -40,16 +39,6 @@ public final class Profile {
     // Set player's name
     public void setName(@NotNull final String name) {
         this.name = name;
-    }
-
-    // Add a profile to the player's frozen list
-    public void addFrozen(@NotNull final Profile profile) {
-        frozenList.add(profile);
-    }
-
-    // Remove a profile from the player's frozen list
-    public void removeFrozen(@NotNull final Profile profile) {
-        frozenList.remove(profile);
     }
 
     // Check if the player themselves is frozen
