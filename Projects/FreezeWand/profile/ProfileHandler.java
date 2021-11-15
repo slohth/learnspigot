@@ -5,12 +5,12 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Map;
 import java.util.Optional;
 import java.util.UUID;
-import java.util.concurrent.ConcurrentHashMap;
+import java.util.HashMap;
 
 public final class ProfileHandler {
 
     // Declare a map for storing profiles, player's unique id as key
-    private final Map<UUID, Profile> profileMap = new ConcurrentHashMap<>();
+    private final Map<UUID, Profile> profileMap = new HashMap<>();
 
     // Public constructor, allow for instantiation
     public ProfileHandler() {
