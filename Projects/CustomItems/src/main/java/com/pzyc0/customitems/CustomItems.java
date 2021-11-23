@@ -6,18 +6,11 @@ import org.bukkit.plugin.java.JavaPlugin;
 import java.io.File;
 import java.io.IOException;
 
-public final class Customitems extends JavaPlugin {
-
-    //The manager that saves and loads ItemStacks
-    private ConfigManager manager;
-
-    public File getDatafile() {
-        return datafile;
-    }
+public final class CustomItems extends JavaPlugin {
 
     //File for the custom items and the yml file of it
     private File datafile;
-    private YamlConfiguration changeDataFile;
+    private YamlConfiguration ymlDataFile;
 
     @Override
     public void onEnable() {
@@ -35,14 +28,16 @@ public final class Customitems extends JavaPlugin {
             }
         }
 
-        changeDataFile = YamlConfiguration.loadConfiguration(datafile);
+        ymlDataFile = YamlConfiguration.loadConfiguration(datafile);
         try {
-            changeDataFile.save(datafile);
+            ymlDataFile.save(datafile);
         } catch (IOException e) {
             e.printStackTrace();
         }
-        manager = new ConfigManager(this);
+        //The manager that saves and loads ItemStacks
+        ConfigManager manager = new ConfigManager(this);
         getCommand("getitem").setExecutor(new GetItemCommand(manager));
+        getCommand("getitem").setTabCompleter(new GetItemCommand(manager));
         getCommand("saveitem").setExecutor(new SaveItemCommand(manager));
     }
 
@@ -50,13 +45,16 @@ public final class Customitems extends JavaPlugin {
     public void onDisable() {
         // Plugin shutdown logic
         try {
-            changeDataFile.save(datafile);
+            ymlDataFile.save(datafile);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public YamlConfiguration getChangeDataFile() {
-        return changeDataFile;
+    public YamlConfiguration getYmlDataFile() {
+        return ymlDataFile;
+    }
+    public File getDatafile() {
+        return datafile;
     }
 }

@@ -8,7 +8,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 public class SaveItemCommand implements CommandExecutor {
-    private ConfigManager manager;
+    private final ConfigManager manager;
 
     public SaveItemCommand(ConfigManager manager) {
         this.manager = manager;
@@ -27,7 +27,7 @@ public class SaveItemCommand implements CommandExecutor {
             return false;
         }
 
-        manager.SaveItem(player.getInventory().getItemInMainHand(), args[0]);
+        manager.saveItem(player.getInventory().getItemInMainHand(), args[0]);
         player.sendMessage(ChatColor.GREEN+"Saved the Item!");
         manager.saveFile();
 
